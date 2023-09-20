@@ -1,0 +1,57 @@
+from django.db import models
+class Ufs(models.Model):
+        id_uf= models.AutoField(primary_key = true) 
+        nome_uf=  models.CharField(max_length= 30)
+        sigla_uf models.CharField(max_length= 2)
+
+class Cidades(models.Model):
+        id_cidade= models.AutoField(primary_key = true)]
+        nome_cidade = models.CharField(max_length= 50)
+        id_uf = models.ForeignKey(Enderecos, on_delete= models.CASCADE)
+
+
+class Enderecos(models.Model):
+    id_endereco = models.AutoField(primary_key = true)  
+    id_cidade = models.ForeignKey(Enderecos, on_delete= models.CASCADE)
+    logradouro = models.CharField(max_length= 150)
+    numero = models.CharField(max_length= 8 )
+    cep = models.CharField(max_length= 10)
+    bairro = models.CharField(max_length= 80)
+    complemento = models.CharField(max_length=80)
+    observacoes = models.TextField(max_length= 10000)
+
+class Contas(models.Model):
+    id_conta = models.IntegerField()
+    tp_conta = models.CharField(max_length=30)
+    id_banco = models.IntegerField()
+    banco = models.CharField(max_length=50)
+    conta = models.IntegerField()
+    agencia = models.IntegerField()
+    operacao = models.IntegerField
+
+class Ocorrencias(models.Model):
+    id_ocorrencia = models.IntegerField()
+    data = models.DateTimeField( auto_now_add= true)
+    realizada = models.CharField(max_length=1)
+    ocorrencias = models.TextField(max_length=10000)
+    id_pessoas = models.ForeignKey(Pessoas,on_delete= models.CASCADE)
+
+class user(models.Model):
+    id = models.IntegerField()
+    Username = models.CharField(max_length = 30)
+    firs_name = models.CharField(max_length=30)
+    last_name = odels.CharField(max_length=30)
+
+
+
+class Pessoas(models.Model):
+    id_pessoa = models.AutoField(primary_key = true)
+    vinculo = models.CharField(max_length=20)
+    id_user = models.ForeignKey( Pessoas, one_delete =models.CASCATE, null = True, blank= True )
+    cpf = models.IntegerField()
+    nome = models.CharField(max_length=200)
+    telefone = models.CharField(max_length=16)
+    e-mail = models.CharField()
+    id_endereco = IntegerField()
+    id_conta = IntegerField()
+
